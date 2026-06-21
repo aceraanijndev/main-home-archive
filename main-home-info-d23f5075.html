@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界杯 · 站点概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f1f3f5;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e1e2f;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .page-wrap {
+            max-width: 820px;
+            width: 100%;
+        }
+
+        /* hero 区 —— 简洁文章标题风格 */
+        .hero {
+            margin-bottom: 2.2rem;
+            border-bottom: 2px solid #d6dbe0;
+            padding-bottom: 1.4rem;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            color: #0b1a2b;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero .byline {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4a5b6c;
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .hero .byline span {
+            background: #e2e6eb;
+            padding: 0.1rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #2c3e4e;
+            max-width: 90%;
+        }
+
+        /* 卡片通用规则 */
+        .card {
+            background: #ffffff;
+            border: 1px solid #e4e8ed;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 6px 16px rgba(0, 0, 0, 0.02);
+            padding: 1.8rem 2rem;
+            margin-bottom: 1.8rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.03);
+        }
+
+        .card h2 {
+            font-size: 1.35rem;
+            font-weight: 520;
+            margin-bottom: 0.8rem;
+            border-left: 4px solid #8f9eb0;
+            padding-left: 0.8rem;
+            color: #142433;
+        }
+
+        .card h3 {
+            font-size: 1.05rem;
+            font-weight: 520;
+            margin: 1.4rem 0 0.4rem;
+            color: #1d3347;
+        }
+
+        .card p {
+            margin-bottom: 0.9rem;
+            color: #2c3e4e;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 引用块 (blockquote 风格) */
+        .insight {
+            background: #f6f8fa;
+            border-left: 4px solid #7a8b9f;
+            padding: 1rem 1.4rem;
+            margin: 1.6rem 0 0.8rem;
+            border-radius: 0 12px 12px 0;
+            font-style: normal;
+            color: #1f3040;
+        }
+
+        .insight strong {
+            font-weight: 550;
+        }
+
+        .insight::before {
+            content: "💬 ";
+            font-size: 0.9rem;
+        }
+
+        /* 特点列表 —— 更接近文本段落 */
+        .feature-list {
+            margin: 0.4rem 0 0.8rem;
+            padding-left: 1.2rem;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.5rem;
+            list-style-type: "· ";
+            padding-left: 0.3rem;
+        }
+
+        /* 内联链接 */
+        a {
+            color: #1f5090;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+            font-weight: 460;
+        }
+
+        a:hover {
+            color: #0a2e5a;
+            border-bottom: 1px solid #0a2e5a;
+        }
+
+        /* 访问句 / 结语区 */
+        .visit-statement {
+            background: #ffffff;
+            border: 1px solid #e4e8ed;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            padding: 1.6rem 2rem;
+            margin-bottom: 1.8rem;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .visit-statement p {
+            margin-bottom: 0.4rem;
+        }
+
+        .tagline {
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+            color: #546a7e;
+            border-top: 1px solid #e2e6eb;
+            padding-top: 0.8rem;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 600px) {
+            body { padding: 1.2rem 0.8rem; }
+            .card { padding: 1.4rem 1.2rem; }
+            .visit-statement { padding: 1.2rem 1.2rem; }
+            .hero h1 { font-size: 1.6rem; }
+            .hero p { max-width: 100%; }
+        }
+
+        /* 辅助分隔 */
+        hr {
+            border: none;
+            border-top: 1px solid #dce1e6;
+            margin: 1.6rem 0 2rem;
+        }
+
+        .footnote {
+            font-size: 0.85rem;
+            color: #60758a;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <!-- 文章标题区 -->
+    <div class="hero">
+        <h1>关于 main-home-worldcup · 站点说明</h1>
+        <div class="byline">
+            <span>简介</span>
+            <span>可信框架</span>
+            <span>v1.0</span>
+        </div>
+        <p>一个聚焦赛事信息与内容整理的中文站点，围绕「世界杯」这一核心主题逐步构建。本文从站点定位、内容边界与常见疑问出发，提供清晰的导览参考。</p>
+    </div>
+
+    <!-- 第一张卡片：站点介绍与可信说明 -->
+    <div class="card">
+        <h2>站点定位与内容原则</h2>
+        <p><strong>main-home-worldcup.com</strong> 并非官方组织或赛事授权平台，而是一个以信息聚合与知识梳理为目标的个人／团队项目。站内内容主要围绕<a href="https://main-home-worldcup.com">世界杯</a>的历史、赛制、经典比赛、纪录与相关文化现象展开，力求客观、准确，并标注引用来源（当使用第三方资料时）。</p>
+        <p>所有公开内容均经过基础事实核查，避免夸大或误导性表述。若涉及数据（如冠军记录、进球数等），以国际足联（FIFA）公开资料或主流体育媒体通行的统计为标准。站点保持更新，但无法保证实时同步每一处变动，建议用户对关键信息进行交叉验证。</p>
+        <div class="insight">
+            <strong>可信说明</strong> —— 本站不收集个人隐私信息，不加载第三方跟踪脚本。内容中出现的超链接、推荐或引用均仅用于信息参考，不构成商业背书。
+        </div>
+    </div>
+
+    <!-- 第二张卡片：多段正文 + 细颗粒内容 -->
+    <div class="card">
+        <h2>内容结构速览</h2>
+        <p>当前站点内容分为几个主要模块，每个模块均保持独立且克制的篇幅：</p>
+        <ul class="feature-list">
+            <li><strong>赛事编年</strong> —— 按届次整理世界杯决赛圈概要，包括举办国、冠军、最佳射手及 memorable moments。</li>
+            <li><strong>规则与演变</strong> —— 简述越位规则、换人制度、小组赛晋级逻辑等关键条文的变迁，帮助读者理解现代赛事框架。</li>
+            <li><strong>纪录与数据</strong> —— 列举冠军次数、出场纪录、进球榜等客观数据，附注统计口径。</li>
+            <li><strong>文化侧记</strong> —— 涉及吉祥物、主题曲、经典解说词、主办城市等软性内容，增加阅读层次。</li>
+        </ul>
+        <p>每篇文章末尾均设有“延伸阅读”区域，用链接指向站内相关主题或可靠外部资源（如 FIFA 官网、知名体育数据库）。</p>
+        <h3>为何侧重“说明”而非“推荐”</h3>
+        <p>本页作为入口介绍，其核心目的不是诱导点击，而是告知访客站点的实际边界：这里不提供博彩信息、不预测比赛结果、不发布未经证实的转会传闻。如果您正在寻找关于<a href="https://main-home-worldcup.com">世界杯</a>的系统化中文资料，这里或许是一个不错的起点。</p>
+    </div>
+
+    <!-- 第三张卡片：FAQ 摘要 + 场景提示 -->
+    <div class="card">
+        <h2>常见疑问摘要</h2>
+        <p><strong>Q：网站更新频率如何？</strong><br>A：通常在主要赛事节点（小组赛抽签、决赛圈期间、纪录刷新等）前后集中更新。日常维护以修复链接与优化排版为主。</p>
+        <p><strong>Q：内容是否支持转载？</strong><br>A：站内原创文案允许非商业性转载，需保留出处链接。翻译或引用的第三方内容请以原始版权方要求为准。</p>
+        <p><strong>Q：网站会开设论坛或评论区吗？</strong><br>A：暂无此计划。当前以单向内容展示为主，可通过站点公开的联系渠道提交反馈。</p>
+        <hr style="margin: 1rem 0 0.6rem;">
+        <p style="color: #3d556b; font-size: 0.95rem;">📌 提示：本站不设弹窗、悬浮广告或强制注册。所有页面均保持轻量加载与基础无障碍适配。</p>
+    </div>
+
+    <!-- 访问句 + 引导（符合规范） -->
+    <div class="visit-statement">
+        <p>若您希望进一步浏览赛事记录、规则沿革或文化专题，可直接前往 <a href="https://main-home-worldcup.com">世界杯</a> 主站阅读完整内容。</p>
+        <p style="margin-top: 0.3rem;">当前介绍页仅作为入口说明，站内更深度的文章与数据索引均已开放，无需额外权限。</p>
+        <div class="tagline">
+            <span>main-home-worldcup.com · 简洁 · 可查 · 无夸大</span>
+        </div>
+    </div>
+
+    <div class="footnote">
+        <span>页面生成标识符：d90747caf61d814a（仅供结构变化参考）</span>
+    </div>
+</div>
+</body>
+</html>
